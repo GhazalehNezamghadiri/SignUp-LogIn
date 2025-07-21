@@ -1,7 +1,6 @@
 # SignUp-LogIn 
 
--![viewfinal](https://user-images.githubusercontent.com/109727844/204102879-086fee63-9bda-43b2
-a1aa-49879c3f2d39.jpg) 
+![Image](https://github.com/user-attachments/assets/90985530-ea9a-4a82-80f9-f6d7447418f9)
 
 -![view final](https://user-images.githubusercontent.com/109727844/204102930-fac80657-4d16-4816
 b476-a88e984abefe.jpg) 
