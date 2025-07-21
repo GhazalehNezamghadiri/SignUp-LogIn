@@ -4,7 +4,7 @@
 
 ![Image](https://github.com/user-attachments/assets/6064a93a-a832-4827-bf61-299fa0b79773)
 
-![Image](https://github.com/user-attachments/assets/6064a93a-a832-4827-bf61-299fa0b79773)
+
 
 -[Demo Project](https://ghazalehnezamghadiri.github.io/SignUp-LogIn/) 
 
