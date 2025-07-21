@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/output.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fontello.css">
+
+
+<body class="flex justify-center items-center h-screen bg-gray-200 px-5">
+
+    <div class="w-[70%] relative mx-auto bg-white shadow-lg rounded-xl overflow-hidden">
+        <div class="flex flex-col md:flex-row">
+
+            <div class="w-full md:w-1/2 h-[180px] md:h-auto flex items-center justify-center bg-gray-800 text-white  ">
+                <div class="text-start px-2 w-[300px] lg:pl-6 md:w-[500px]">
+                    <h2 class="lg:text-[25px] text-xl font-bold mb-4" id="title">Have an account?</h2>
+                    <p class="lg:text-md text-sm mb-6" id="para">Already a member? Log in to pick up where you left off
+                    </p>
+                    <button id="btn"
+                        class="bg-white text-xs  md:w-[140px] text-gray-800 px-6 py-2 rounded hover:bg-gray-100 transition">LOG
+                        IN</button>
+                </div>
+            </div>
+
+
+            <div class="relative w-full md:w-1/2 overflow-hidden">
+
+                <div id="form" class="flex w-[200%] anim">
+
+                    <form action="" class="w-1/2 p-10 bg-white space-y-4" id="signup" onsubmit="return act1()">
+                        <div class="flex justify-between">
+                            <h2 class="text-sm font-bold text-pink-600 mb-4 md:text-xl"> SIGN UP</h2>
+                            <p id="Msg" class="text-green-600 w-1/2 text-sm mt-2 hidden">Welcome! You have successfully signed
+                                up</p>
+                        </div>
+                        <input type="text" required class="w-full border-b border-gray-400 py-2 outline-none"
+                            placeholder="Full Name">
+
+                        <input type="number" min="10" required id="Age" placeholder="Age"
+                            class="w-full border-b border-gray-400 py-2 outline-none" />
+
+                        <input type="text" required class="w-full border-b border-gray-400 py-2 outline-none"
+                            placeholder="Email" id="Email">
+                        <span id="MailErr" class="text-red-500 block text-sm"></span>
+
+                        <div class="relative">
+                            <input type="password" id="Password" placeholder="Password"
+                                class="w-full border-b border-gray-400 py-2 outline-none pr-10" />
+                            <span id="eye" class="absolute right-2 bottom-2  cursor-pointer text-gray-500  ">
+                                <i class="icon-eye"></i>
+                            </span>
+                        </div>
+
+                        <button type="button"
+                            class="bg-pink-500 text-white w-full py-2 rounded hover:bg-pink-600 transition"
+                            id="send">SIGN UP</button>
+                    </form>
+
+
+
+                    <form action="" class="w-1/2 p-10 bg-white space-y-4" onsubmit="return act2()" id="login">
+
+                        <div class="flex justify-between">
+                            <h2 class="text-xl font-bold text-pink-600 mb-4"> LOG IN</h2>
+                            <p id="logMsg" class="text-sm mb-4 hidden"></p>
+                        </div>
+                        <input type="text" placeholder="Email" id="mailLog"
+                            class="w-full border-b border-gray-400 py-2 outline-none">
+                        <span id="MailErrLog" class="text-red-500 block text-sm"></span>
+
+                        <input type="text" placeholder="Password" id="passLog"
+                            class="w-full border-b border-gray-400 py-2 outline-none">
+                        <span id="PassErrLog" class="text-red-500 block text-sm"></span>
+
+                        <div id="admin" class="text-sm text-pink-500 cursor-pointer"> Are you an admin?</div>
+                        <button type="button" id="send2"
+                            class="bg-pink-500 text-white w-full py-2 rounded hover:bg-pink-600 transition">LOG
+                            IN</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <figure class="myfoot  ">
+            <img src="img/ghazall.jfif" alt="">
+            <a href="https://www.linkedin.com/in/ghazaleh-nezamghadiri-06b626302/" target="_blank"><i
+                    class=" icon-linkedin"></i></a>
+            <a href="https://github.com/GhazalehNezamghadiri" target="_blank"><i class=" icon-icons8-github"></i></a>
+            <a href="https://www.instagram.com/ghazale.ghadiri/?hl=en" target="_blank"><i
+                    class=" icon-icons8-instagram"></i></a>
+            <a href="mailto:ghazalehghadiri2@gmail.com"><i class=" icon-mail"></i></a>
+            <figcaption>ghazaleh ghadiri</figcaption>
+        </figure>
+
+    </div>
+</body>
+
+<script>
+
+    const title = document.getElementById('title')
+    const para = document.getElementById('para')
+    const btn = document.getElementById('btn')
+    const send = document.getElementById('send')
+    const send2 = document.getElementById('send2')
+    const form = document.getElementById('form')
+    const items = document.querySelectorAll('#signup input')
+    const admin = document.getElementById('admin')
+    const eye = document.getElementById('eye')
+    const pass = document.getElementById('Password')
+    const item2 = document.querySelectorAll('#login input')
+
+    const url = 'https://6876247b814c0dfa653adae9.mockapi.io/users'
+
+    const package = {
+        FullName: '',
+        Age: '',
+        Email: '',
+        Password: '',
+
+    }
+
+    let Issignup = true;
+
+    btn.addEventListener('click', () => {
+        Issignup = !Issignup
+        form.style.transform = Issignup ? 'translateX(0)' : 'translateX(-50%)'
+        btn.textContent = Issignup ? 'LOG IN' : 'SIGN UP'
+        title.textContent = Issignup ? 'Have an account?' : "Don't have an account?"
+        para.textContent = Issignup ? 'Already a member? Log in to pick up where you left off' : 'New here? Signing up takes less than a minute'
+    })
+
+
+    send.addEventListener('click', () => {
+
+        const age = document.getElementById('Age').value
+        const message = document.getElementById('Msg')
+
+        let flag = 0
+
+        items.forEach(item => {
+            if (item.value.trim() === '') {
+                flag++
+            }
+        })
+
+        if (flag === 0) {
+
+            package.FullName = items[0].value
+            package.Age = items[1].value
+            package.Email = items[2].value
+            package.Password = items[3].value
+
+
+            console.log(package);
+
+
+            if (Number(age) < 10) {
+                message.textContent = 'Age cannot be less than 10'
+                message.classList.remove('hidden')
+                message.classList.remove('text-green-600')
+                message.classList.add('text-red-600')
+
+                return
+            }
+            emailCheck(items[2].value)
+
+            message.classList.remove('text-red-600')
+            message.classList.add('text-green-600')
+            message.classList.remove('hidden')
+
+        }
+
+    })
+
+
+    eye.addEventListener('click', () => {
+        if (pass.type === 'password') {
+            pass.type = 'text'
+            eye.innerHTML = '<i class=" icon-eye-off"></i>'
+        } else {
+            pass.type = 'password'
+            eye.innerHTML = '<i class=" icon-eye"></i>'
+
+        }
+    })
+
+
+
+    admin.addEventListener('click', () => {
+        document.getElementById('mailLog').value = 'ghazalehghadiri2@gmail.com'
+        document.getElementById('passLog').value = 'Admin2004!'
+    })
+
+
+
+
+    function emailCheck(myMail) {
+        let status = ''
+
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                data.map((val) => {
+                    if (val.Email == myMail) {
+                        status++
+                    }
+                })
+
+                if (status == 0) {
+
+                    fetch(url, {
+                        method: 'POST',
+                        headers: { 'content-type': 'application/json' },
+                        body: JSON.stringify(package)
+                    }).then(res => {
+                        if (res.ok) {
+                            return res.json();
+                        }
+
+                    }).then(task => {
+                        const message = document.getElementById('Msg')
+                        message.classList.remove('hidden')
+                        message.textContent = 'Welcome! You have successfully signed up'
+                    }).catch(error => {
+                        alert('Error')
+                    })
+
+                } else {
+                    const message = document.getElementById('Msg')
+                    message.classList.remove('hidden')
+                    message.textContent = 'This email is already registered. Please log in instead.'
+
+                }
+            })
+    }
+
+
+
+
+    function act1() {
+        const email = document.getElementById('Email').value.trim()
+        const pass = document.getElementById('Password').value.trim()
+        const passError = document.getElementById('PassErr')
+        const emailError = document.getElementById('MailErr')
+
+
+        let flag = true
+        emailError.textContent = ''
+        passError.textContent = ''
+        message.classList.add('hidden')
+
+        if (email === '' || email.length < 10 || email.includes('<script')) {
+            emailError.textContent = "The email must be at least 10 characters long"
+            flag = false
+        } else if (!email.includes("@") || !email.includes(".")) {
+            emailError.textContent = "The email format is incorrect"
+            flag = false
+        }
+
+        if (pass === '' || pass.length < 8 || pass.includes('<script')) {
+            passError.textContent = "The password must be at least 8 characters long"
+            flag = false
+        } else if (
+            pass.search(/[a-z]/) === -1 ||
+            pass.search(/[A-Z]/) === -1 ||
+            pass.search(/[0-9]/) === -1 ||
+            pass.search(/[~!@#$%^&*()_]/) === -1
+        ) {
+            passError.textContent = 'Password must include uppercase letters, lowercase letters, numbers, and special characters'
+            flag = false
+        }
+
+        return flag
+    }
+
+
+    function act2() {
+        const email = document.getElementById('mailLog').value.trim()
+        const pass = document.getElementById('passLog').value.trim()
+        const passError = document.getElementById('PassErrLog')
+        const emailError = document.getElementById('MailErrLog')
+
+        let flag = true
+        emailError.textContent = ''
+        passError.textContent = ''
+
+
+        if (
+            email === '' ||
+            email.length < 10 ||
+            email.includes('<script')
+        ) {
+            emailError.textContent = "The email must be at list 10 characters long"
+            flag = false
+
+        } else if (
+            !email.includes("@") ||
+            !email.includes(".")) {
+            emailError.textContent = "The email format is incorrect"
+            flag = false
+        }
+
+
+        if (pass === '' ||
+            pass.length < 8 ||
+            pass.includes('<script')
+        ) {
+
+            passError.textContent = "The password must be at least 8 characters long"
+            flag = false
+        } else if (
+            pass.search(/[a-z]/) === -1 ||
+            pass.search(/[A-Z]/) === -1 ||
+            pass.search(/[0-9]/) === -1 ||
+            pass.search(/[~!@#$%^&*()_]/) === -1
+        ) {
+            passError.textContent = 'Password must include uppercase letters, lowercase letters, numbers, and special characters'
+            flag = false
+        }
+
+        return flag
+
+    }
+
+
+    send2.addEventListener('click', () => {
+        const mailLog = document.getElementById('mailLog').value
+        const messLog = document.getElementById('logMsg')
+        const passLog = document.getElementById('passLog').value
+
+        if (mailLog === 'ghazalehghadiri2@gmail.com' && passLog === 'Admin2004!') {
+
+            window.location.assign('dashboard.html')
+            return
+        }
+
+
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                const find = data.find(data => data.Email === mailLog)
+
+                if (find) {
+                    messLog.textContent = 'Welcome! Email found'
+                    messLog.classList.remove('hidden', 'text-red-500')
+                    messLog.classList.add('text-green-500')
+
+                } else {
+                    messLog.textContent = 'Not found! Please sign up first'
+                    messLog.classList.remove('hidden', 'text-green-500')
+                    messLog.classList.add('text-red-500')
+                }
+            }).catch(err => {
+                alert('error fetching data')
+                console.log(err)
+            })
+    })
+
+
+
+</script>
+
+</html>
